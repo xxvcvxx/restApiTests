@@ -4,16 +4,25 @@ package org.example;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String pesel = "9323111543";
+        int correctLength = 11;
+        int[] peselTab = new int[correctLength];
+        int[] multiply = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 0};
+        int controlSum = 0;
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        if (pesel.length() == 11) {
+            int[] multiplyc = new int[correctLength];
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+            for (int i = 0; i < correctLength; i++) {
+                peselTab[i] = Character.getNumericValue((pesel.charAt(i)));
+                multiplyc[i] = peselTab[i] * multiply[i];
+                if (multiplyc[i] >= 10) {
+                    controlSum += multiplyc[i] % 10;
+                } else controlSum += multiplyc[i];
+            }
+            if (controlSum > 10) controlSum = 10 - controlSum % 10;
+            System.out.println("Control Number: " + peselTab[correctLength - 1]);
+            System.out.println("Calculated control number :" + controlSum);
+        } else System.out.println("Invalid PESEL length!");
     }
 }
