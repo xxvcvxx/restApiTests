@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TestsInvalidPesel_PeselControler {
+public class PeselController_TestsInvalidPesel {
 
     @Test(dataProvider = "wrongLength")
     public static void invalidPeselTestWrongLength(String pesel) {

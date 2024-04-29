@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TestsValidPesel_PeselControler {
+public class PeselController_TestsValidPesel {
 
     @DataProvider
     public Object[][] validPesels() {

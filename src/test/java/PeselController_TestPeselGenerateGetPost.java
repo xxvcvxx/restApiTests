@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TestPeselGenerateGetPost_PeselController {
+public class PeselController_TestPeselGenerateGetPost {
 
     @Test
     public static void peselGenerateGetTest() {
