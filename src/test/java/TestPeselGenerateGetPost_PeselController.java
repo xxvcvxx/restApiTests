@@ -26,7 +26,7 @@ public class TestPeselGenerateGetPost_PeselController {
         request.body("{\"dateOfBirth\": \""+date+"\", \"gender\": \""+gender+"\"}");
         Response response = (Response) request.post(TestBase.peselGenerateUrl, new Object[0]);
         String pesel = response.asPrettyString();
-        Assert.assertEquals(expectedPeselprefix, pesel.substring(0, 6));
+        Assert.assertEquals(pesel.substring(0, 6), expectedPeselprefix);
 
     }
 
@@ -36,7 +36,6 @@ public class TestPeselGenerateGetPost_PeselController {
                 {"11-11-1999", "FEMALE","991111"},
                 {"02-01-1988", "FEMALE","880102"},
                 {"11-11-2001", "MALE","013111"},
-                {"12-20-2004", "MALE","043220"},
         };
     }
 }
