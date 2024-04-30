@@ -18,7 +18,7 @@ public class PeselController_TestsInvalidPesel {
     }
 
     @Test(dataProvider = "wrongLength")
-    public static void invalidPeselTestWrongLengthStatus(String pesel) {
+    public static void invalidPeselTestWrongStatus(String pesel) {
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
 
@@ -67,7 +67,6 @@ public class PeselController_TestsInvalidPesel {
         return new Object[][]{
                 {"43891791" },
                 {"1906056377667" },
-
         };
     }
 
@@ -77,7 +76,6 @@ public class PeselController_TestsInvalidPesel {
                 {"59732854784", "Month = 73. " },
                 {"03801450120", "Month = 80. " },
                 {"73932079842", "Month = 93. " },
-
         };
     }
 

@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 public class PeselController_TestsValidPesel {
 
-
     @Test(dataProvider = "validPesels")
     public void validPeselTestStatusCodeCheck(String pesel, String description) {
         //System.out.println("Test case: "+description+" - "+ pesel);
@@ -19,7 +18,7 @@ public class PeselController_TestsValidPesel {
 
     @Test(dataProvider = "validPesels")
     public void validPeselTestResponseBody(String pesel, String description) {
-        //System.out.println("Test case: "+description+" - "+ pesel);
+        // System.out.println("Test case: "+description+" - "+ pesel);
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
 
@@ -30,7 +29,7 @@ public class PeselController_TestsValidPesel {
 
     @Test(dataProvider = "validPesels")
     public void validPeselGender(String pesel, String description) {
-        //System.out.println("Test case: "+description+" - "+ pesel);
+        // System.out.println("Test case: "+description+" - "+ pesel);
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
 
@@ -43,7 +42,7 @@ public class PeselController_TestsValidPesel {
 
     @Test(dataProvider = "validPesels")
     public void validPeselDateOfBirth(String pesel, String description) {
-        //System.out.println("Test case: "+description+" - "+ pesel);
+        // System.out.println("Test case: "+description+" - "+ pesel);
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
 
