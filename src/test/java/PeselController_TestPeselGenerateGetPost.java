@@ -14,17 +14,21 @@ public class PeselController_TestPeselGenerateGetPost {
         {
             Response response = RestAssured.get(TestBase.peselGenerateUrl);
             System.out.println(response.getStatusCode());
-            //System.out.println(response.asPrettyString());
             Assert.assertEquals(response.getStatusCode(), TestBase.statusCodeSuccessOK);
         }
     }
 
     @Test(dataProvider = "dateOfBirth")
     public static void peselGeneratePostTest(String date, String gender, String expectedPeselprefix) {
+        // Arrange
         RequestSpecification request = RestAssured.given();
         request.header("Content-Type", "application/json", new Object[0]);
         request.body("{\"dateOfBirth\": \""+date+"\", \"gender\": \""+gender+"\"}");
+
+        // Act
         Response response = (Response) request.post(TestBase.peselGenerateUrl, new Object[0]);
+
+        // Assert
         String pesel = response.asPrettyString();
         Assert.assertEquals(pesel.substring(0, 6), expectedPeselprefix);
 

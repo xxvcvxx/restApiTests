@@ -6,6 +6,4 @@ public class TestBase {
     public final static int statusCodeBadRequest=400;
     public final static int statusCodeInternalServerError = 500;
     public final static int statusCodeCreated=201;
-
-
 }
