@@ -18,7 +18,7 @@ public class NbpApiTest {
     }
 
     @Test
-    public void testGoldPriceIsNotNull() {
+    public void testGoldPriceIsNotZero() {
         // Act
         Response response = RestAssured.get("http://api.nbp.pl/api/cenyzlota");
         ArrayList<Float> prices = response.path("cena");
@@ -26,7 +26,6 @@ public class NbpApiTest {
 
         // Assert
         Assert.assertEquals(response.statusCode(), TestBase.statusCodeSuccessOK);
-        Assert.assertNotEquals(actualPrice, null);
         Assert.assertNotEquals(actualPrice, 0);
     }
 }

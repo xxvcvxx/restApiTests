@@ -10,10 +10,10 @@ public class PeselController_TestsInvalidPesel {
     public static void invalidPeselTestWrongLength(String pesel) {
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
-
-        // Assert
         String actualResponse = response.asPrettyString();
         String expectedResponse = "Invalid PESEL length";
+
+        // Assert
         Assert.assertEquals(actualResponse, expectedResponse);
     }
 

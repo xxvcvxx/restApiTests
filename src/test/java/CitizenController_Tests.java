@@ -19,10 +19,10 @@ public class CitizenController_Tests {
 
         // Act
         Response response = request.post(TestBase.citizenControllerUrl);
+        id = response.path("id");
 
         // Assert
         Assert.assertEquals(response.statusCode(), TestBase.statusCodeCreated);
-        id = response.path("id");
         Assert.assertEquals(response.path("name"), name);
     }
 
@@ -36,11 +36,11 @@ public class CitizenController_Tests {
 
         // Act
         Response response = request.put(TestBase.citizenControllerUrl);
+        int actualId = response.path("id");
 
         // Assert
         Assert.assertEquals(response.statusCode(), TestBase.statusCodeSuccessOK);
         Assert.assertEquals(response.path("name"), newName);
-        int actualId = response.path("id");
         Assert.assertEquals(actualId, id);
     }
 
