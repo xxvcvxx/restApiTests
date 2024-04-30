@@ -27,9 +27,9 @@ public class PeselController_TestPeselGenerateGetPost {
 
         // Act
         Response response = request.post(TestBase.peselGenerateUrl);
+        String pesel = response.asPrettyString();
 
         // Assert
-        String pesel = response.asPrettyString();
         Assert.assertEquals(pesel.substring(0, 6), expectedPeselprefix);
     }
 

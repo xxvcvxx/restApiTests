@@ -21,9 +21,9 @@ public class PeselController_TestsValidPesel {
         // System.out.println("Test case: "+description+" - "+ pesel);
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
+        boolean peselValid = response.path("peselValid");
 
         // Assert
-        boolean peselValid = response.path("peselValid");
         Assert.assertTrue(peselValid);
     }
 
@@ -32,11 +32,11 @@ public class PeselController_TestsValidPesel {
         // System.out.println("Test case: "+description+" - "+ pesel);
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
-
-        // Assert
         String[] words = description.split("\\s+");
         String expectedGender = words[0].toUpperCase();
         String actualGender = response.path("gender");
+
+        // Assert
         Assert.assertEquals(actualGender, expectedGender);
     }
 
@@ -45,11 +45,11 @@ public class PeselController_TestsValidPesel {
         // System.out.println("Test case: "+description+" - "+ pesel);
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
-
-        // Assert
         String[] words = description.split("\\s+");
         String expectedDateOfBirth = words[1];
         String actualDateOfBirth = response.path("dateOfBirth");
+
+        // Assert
         Assert.assertEquals(actualDateOfBirth, expectedDateOfBirth);
     }
 
