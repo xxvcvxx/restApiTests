@@ -44,7 +44,7 @@ public class PeselController_TestsInvalidPesel {
         Assert.assertEquals(response.statusCode(), TestBase.statusCodeBadRequest);//200 + no response body
     }
 
-    @Test(dataProvider = "InvalidMonth")
+    @Test(dataProvider = "invalidMonth")
     public static void invalidPeselTestInvalidMonth(String pesel, String description) {
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
@@ -53,7 +53,7 @@ public class PeselController_TestsInvalidPesel {
         Assert.assertEquals(response.statusCode(), TestBase.statusCodeBadRequest);//500
     }
 
-    @Test(dataProvider = "InvalidDay")
+    @Test(dataProvider = "invalidDay")
     public static void invalidPeselTestInvalidDay(String pesel, String description) {
         // Act
         Response response = RestAssured.get(TestBase.peselApiUrl + pesel);
@@ -71,7 +71,7 @@ public class PeselController_TestsInvalidPesel {
     }
 
     @DataProvider
-    public Object[][] InvalidMonth() {
+    public Object[][] invalidMonth() {
         return new Object[][]{
                 {"59732854784", "Month = 73. " },
                 {"03801450120", "Month = 80. " },
@@ -80,7 +80,7 @@ public class PeselController_TestsInvalidPesel {
     }
 
     @DataProvider
-    public Object[][] InvalidDay() {
+    public Object[][] invalidDay() {
         return new Object[][]{
                 {"32693133424", "Day = 31,month = 69. " },
                 {"77900009626", "Day = 00,month = 90. " },
