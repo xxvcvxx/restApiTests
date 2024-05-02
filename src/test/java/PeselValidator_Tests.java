@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class PeselValidator_Tests {
 
     @Test(dataProvider = "validPesels")
-    public void oneTestForValidPesel(String pesel, String gender) {
+    public void validPeselTest(String pesel, String gender) {
         // Act
         Response response = RestAssured.get(TestBase.peselvalidatorURL + pesel);
 
@@ -18,10 +18,10 @@ public class PeselValidator_Tests {
         Assert.assertEquals(response.path("gender"), gender);
     }
 
-    @Test
-    public void invalidPeselTestToShortLength() {
+    @Test(dataProvider = "invalidLength")
+    public void invalidTempestInvalidLength(String pesel) {
         // Act
-        Response response = RestAssured.get(TestBase.peselvalidatorURL + "9845345");
+        Response response = RestAssured.get(TestBase.peselvalidatorURL + pesel);
 
         // Assert
         Assert.assertEquals(response.statusCode(), TestBase.statusCodeSuccessOK);
@@ -31,15 +31,12 @@ public class PeselValidator_Tests {
     }
 
     @Test
-    public void invalidPeselTestToLongLengthTest() {
+    public void invalidPeselTestEmptyRequest() {
         // Act
-        Response response = RestAssured.get(TestBase.peselvalidatorURL + "984213155345");
+        Response response = RestAssured.get(TestBase.peselvalidatorURL + "");
 
         // Assert
-        Assert.assertEquals(response.statusCode(), TestBase.statusCodeSuccessOK);
-        Assert.assertEquals(response.path("isValid"), false);
-        Assert.assertEquals(response.path("errors[0].errorCode"), "INVL");
-        Assert.assertEquals(response.path("errors[0].errorMessage"), "Invalid length. Pesel should have exactly 11 digits.");
+        Assert.assertEquals(response.statusCode(), TestBase.statusCodeBadRequest);
     }
 
     @Test
@@ -78,6 +75,7 @@ public class PeselValidator_Tests {
         Assert.assertEquals(response.path("isValid"), false);
         Assert.assertEquals(response.path("errors[1].errorCode"), "INVM");
         Assert.assertEquals(response.path("errors[1].errorMessage"), "Invalid month.");
+        Assert.assertNull(response.path("dateOfBrith"));
     }
 
     @Test(dataProvider = "invalidDay")
@@ -90,6 +88,7 @@ public class PeselValidator_Tests {
         Assert.assertEquals(response.path("isValid"), false);
         Assert.assertEquals(response.path("errors[0].errorCode"), "INVD");
         Assert.assertEquals(response.path("errors[0].errorMessage"), "Invalid day.");
+        Assert.assertNull(response.path("dateOfBrith"));
     }
 
     @Test
@@ -108,6 +107,16 @@ public class PeselValidator_Tests {
         Assert.assertEquals(response.path("errors[2].errorMessage"), "Invalid month.");
         Assert.assertEquals(response.path("errors[3].errorCode"), "INVD");
         Assert.assertEquals(response.path("errors[3].errorMessage"), "Invalid day.");
+    }
+
+    @DataProvider
+    public Object[][] invalidLength() {
+        return new Object[][]{
+                {"438917"},
+                {"1"},
+                {"09230279273345"},
+                {"15440140696345345345345323523"},
+        };
     }
 
     @DataProvider
